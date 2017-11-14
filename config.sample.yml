@@ -1,74 +1,27 @@
-#######################################################################
-# Wiki.js - CONFIGURATION                                             #
-#######################################################################
-# Full explanation + examples in the documentation:
-# https://docs.requarks.io/wiki/install
-
-# ---------------------------------------------------------------------
-# Title of this site
-# ---------------------------------------------------------------------
-
-title: Wiki
-
-# ---------------------------------------------------------------------
-# Full public path to the site, without the trailing slash
-# ---------------------------------------------------------------------
-# INCLUDE CLIENT PORT IF NOT 80/443!
-
-host: http://localhost
-
-# ---------------------------------------------------------------------
-# Port the main server should listen to (80 by default)
-# ---------------------------------------------------------------------
-# To use process.env.PORT, comment the line below:
-
+title: Campusradio Wiki
+host: 'http://localhost'
 port: 80
-
-# ---------------------------------------------------------------------
-# Data Directories
-# ---------------------------------------------------------------------
-
 paths:
   repo: ./repo
   data: ./data
 
-# ---------------------------------------------------------------------
-# Upload Limits
-# ---------------------------------------------------------------------
-# In megabytes (MB)
+db: 'mongodb://wikidb:27017/wiki'
+git: false
+lang: en
+public: false
 
 uploads:
   maxImageFileSize: 3
   maxOtherFileSize: 100
 
-# ---------------------------------------------------------------------
-# Site Language
-# ---------------------------------------------------------------------
-# Possible values: en, de, es, fa, fr, ja, ko, nl, pt, ru, sr, tr or zh
-
-lang: en
-
-# Enable for right to left languages (e.g. arabic):
-langRtl: false
-
-# ---------------------------------------------------------------------
-# Site Authentication
-# ---------------------------------------------------------------------
-
-public: false
-
 auth:
-  defaultReadAccess: false
+  defaultReadAccess: true
   local:
-    enabled: true
+    enabled: false
   google:
-    enabled: true
+    enabled: false
     clientId: GOOGLE_CLIENT_ID
     clientSecret: GOOGLE_CLIENT_SECRET
-  microsoft:
-    enabled: true
-    clientId: MS_APP_ID
-    clientSecret: MS_APP_SECRET
   facebook:
     enabled: false
     clientId: FACEBOOK_APP_ID
@@ -78,94 +31,17 @@ auth:
     clientId: GITHUB_CLIENT_ID
     clientSecret: GITHUB_CLIENT_SECRET
   slack:
-    enabled: false
-    clientId: 'SLACK_CLIENT_ID'
-    clientSecret: 'SLACK_CLIENT_SECRET'
-  ldap:
-    enabled: false
-    url: ldap://serverhost:389
-    bindDn: cn='root'
-    bindCredentials: BIND_PASSWORD
-    searchBase: o=users,o=example.com
-    searchFilter: (uid={{username}})
-    tlsEnabled: false
-    tlsCertPath: C:\example\root_ca_cert.crt
-  azure:
-    enabled: false
-    clientId: APP_ID
-    clientSecret: APP_SECRET_KEY
-    resource: '00000002-0000-0000-c000-000000000000'
-    tenant: 'YOUR_TENANT.onmicrosoft.com'
+    enabled: true
+    clientId: CLIENT_ID
+    clientSecret: CLIENT_SECRET
 
-# ---------------------------------------------------------------------
-# Secret key to use when encrypting sessions
-# ---------------------------------------------------------------------
-# Use a long and unique random string (256-bit keys are perfect!)
-
-sessionSecret: 1234567890abcdefghijklmnopqrstuvxyz
-
-# ---------------------------------------------------------------------
-# Database Connection String
-# ---------------------------------------------------------------------
-# You can also use an ENV variable by using $ENV_VAR_NAME as the value
-
-db: mongodb://localhost:27017/wiki
-
-# ---------------------------------------------------------------------
-# Git Connection Info
-# ---------------------------------------------------------------------
-
-git:
-  url: https://github.com/Organization/Repo
-  branch: master
-  auth:
-
-    # Type: basic or ssh
-    type: ssh
-
-    # Only for Basic authentication:
-    username: marty
-    password: MartyMcFly88
-
-    # Only for SSH authentication:
-    privateKey: /etc/wiki/keys/git.pem
-
-    sslVerify: true
-
-  # Default email to use as commit author
-  serverEmail: marty@example.com
-
-  # Whether to use user email as author in commits
-  showUserEmail: true
-
-# ---------------------------------------------------------------------
-# Features
-# ---------------------------------------------------------------------
-# You can enable / disable specific features below
-
-features:
-  linebreaks: true
-  mathjax: true
-
-# ---------------------------------------------------------------------
-# External Logging
-# ---------------------------------------------------------------------
-
-externalLogging:
-  bugsnag: false
-  loggly: false
-  papertrail: false
-  rollbar: false
-  sentry: false
-
-# ---------------------------------------------------------------------
-# Color Theme
-# ---------------------------------------------------------------------
+# 256 String
+sessionSecret: abcdefgh1238217348967
 
 theme:
   primary: indigo
   alt: blue-grey
-  viewSource: all # all | write | false
+  viewSource: all
   footer: blue-grey
   code:
     dark: true
