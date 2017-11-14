@@ -1,1 +1,4 @@
-data
+/data
+
+# CONFIG FILES
+config.yml
