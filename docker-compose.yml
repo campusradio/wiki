@@ -1,21 +1,22 @@
 version: '3'
 
 services:
+
   wikidb:
     image: mongo
-    expose:
-      - '27017'
+    restart: always
+    ports:
+      - 27017:27017
     command: '--smallfiles --logpath=/dev/null'
     volumes:
-      - ./data/mongo:/data/db
+      - ./data/db:/data/db
+
   wikijs:
-    image: 'requarks/wiki:latest'
-    depends_on:
-      - wikidb
+    image: requarks/wiki:latest
+    restart: always
     ports:
-      - '8080:3000'
-    environment:
-      WIKI_ADMIN_EMAIL: admin@example.com
+      - 3001:80
     volumes:
       - ./config.yml:/var/wiki/config.yml
-      - ./data/repo:
+      - ./data/wiki/repo:/var/wiki/data
+      - ./data/wiki/data:/var/wiki/repo
