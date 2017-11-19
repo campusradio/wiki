@@ -5,8 +5,8 @@ services:
   wikidb:
     image: mongo
     restart: always
-    ports:
-      - 27017:27017
+    # ports:
+    #   - 27017:27017
     command: '--smallfiles --logpath=/dev/null'
     volumes:
       - ./data/db:/data/db
