@@ -15,7 +15,7 @@ services:
     image: requarks/wiki:latest
     restart: always
     ports:
-      - 3001:80
+      - 80:80
     volumes:
       - ./config.yml:/var/wiki/config.yml
       - ./data/wiki/repo:/var/wiki/data
